@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Romeo Correc — Junior AI/ML Engineer. Computer vision et edge ML : de la détection temps réel au modèle quantifié qui tourne sur CPU.">
+<title>Romeo Correc — AI/ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e14;
+    --panel: #111721;
+    --line: #1e2733;
+    --ink: #e6edf3;
+    --muted: #8695a8;
+    --dim: #5a6779;
+    --accent: #4dd6c1;
+    --accent-dim: #2a7a6e;
+    --display: 'Space Grotesk', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--display);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,14,20,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .logo { font-family: var(--mono); font-size: 14px; letter-spacing: 0.5px; color: var(--ink); }
+  .logo b { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; font-size: 14px; }
+  .nav-links a { color: var(--muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+  @media (max-width: 640px) { .nav-links { display: none; } }
+
+  /* Hero */
+  header { padding: 110px 0 90px; border-bottom: 1px solid var(--line); position: relative; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 13px; color: var(--accent);
+    letter-spacing: 1px; margin-bottom: 22px;
+    opacity: 0; animation: rise 0.7s 0.05s forwards;
+  }
+  h1 {
+    font-size: clamp(34px, 6vw, 62px); font-weight: 700; line-height: 1.05;
+    letter-spacing: -1.5px; margin-bottom: 26px;
+    opacity: 0; animation: rise 0.7s 0.15s forwards;
+  }
+  h1 .g { color: var(--accent); }
+  .lede {
+    font-size: clamp(16px, 2.2vw, 19px); color: var(--muted); max-width: 620px;
+    margin-bottom: 38px; opacity: 0; animation: rise 0.7s 0.28s forwards;
+  }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; animation: rise 0.7s 0.4s forwards; }
+  .btn {
+    font-family: var(--mono); font-size: 14px; padding: 12px 22px;
+    border: 1px solid var(--line); border-radius: 2px; transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 500; }
+  .btn.primary:hover { background: #6ee3d0; }
+  .btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Section shell */
+  section { padding: 84px 0; border-bottom: 1px solid var(--line); }
+  .sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 44px; }
+  .sec-num { font-family: var(--mono); font-size: 13px; color: var(--accent-dim); }
+  .sec-title { font-size: 26px; font-weight: 600; letter-spacing: -0.5px; }
+
+  /* Projects as spec cards */
+  .proj { border: 1px solid var(--line); border-radius: 3px; margin-bottom: 18px; overflow: hidden; transition: border-color 0.2s; }
+  .proj:hover { border-color: var(--accent-dim); }
+  .proj-top { padding: 22px 26px; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+  .proj-name { font-size: 19px; font-weight: 600; margin-bottom: 8px; }
+  .proj-desc { color: var(--muted); font-size: 15px; max-width: 560px; }
+  .proj-stack { font-family: var(--mono); font-size: 12px; color: var(--dim); white-space: nowrap; padding-top: 4px; }
+  .metrics { display: flex; gap: 0; border-top: 1px solid var(--line); background: var(--panel); }
+  .metric { flex: 1; padding: 16px 26px; border-right: 1px solid var(--line); }
+  .metric:last-child { border-right: none; }
+  .metric .v { font-family: var(--mono); font-size: 18px; color: var(--accent); font-weight: 500; }
+  .metric .k { font-size: 12px; color: var(--dim); margin-top: 2px; }
+  @media (max-width: 560px) {
+    .proj-top { flex-direction: column; gap: 12px; }
+    .proj-stack { white-space: normal; }
+    .metrics { flex-direction: column; }
+    .metric { border-right: none; border-bottom: 1px solid var(--line); }
+    .metric:last-child { border-bottom: none; }
+  }
+
+  /* Skills */
+  .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+  .skill-col { background: var(--bg); padding: 24px; }
+  .skill-col h4 { font-family: var(--mono); font-size: 13px; color: var(--accent); margin-bottom: 14px; letter-spacing: 0.5px; }
+  .skill-col ul { list-style: none; }
+  .skill-col li { font-size: 14px; color: var(--muted); padding: 5px 0; }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; }
+  @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .about p { color: var(--muted); font-size: 16px; margin-bottom: 16px; }
+  .about p strong { color: var(--ink); font-weight: 500; }
+  .timeline { border-left: 1px solid var(--line); padding-left: 22px; }
+  .tl-item { margin-bottom: 22px; }
+  .tl-item .role { font-size: 15px; font-weight: 600; }
+  .tl-item .org { font-family: var(--mono); font-size: 12px; color: var(--accent-dim); margin: 2px 0 4px; }
+  .tl-item .note { font-size: 13px; color: var(--dim); }
+
+  /* Contact */
+  .contact { text-align: center; padding: 96px 0; }
+  .contact h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 700; letter-spacing: -1px; margin-bottom: 16px; }
+  .contact p { color: var(--muted); max-width: 480px; margin: 0 auto 34px; }
+  .contact-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  footer { text-align: center; padding: 32px 0; color: var(--dim); font-family: var(--mono); font-size: 12px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="logo">romeo<b>.correc</b></span>
+    <div class="nav-links">
+      <a href="#projects">Projets</a>
+      <a href="#skills">Compétences</a>
+      <a href="#about">À propos</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">JUNIOR AI/ML ENGINEER · PARIS</div>
+    <h1>Du flux vidéo au modèle<br>qui tient <span class="g">sur un CPU</span>.</h1>
+    <p class="lede">Je travaille en vision par ordinateur et edge ML : détection, segmentation et tracking, puis l'optimisation qui rend un modèle déployable — quantification, ONNX, latence mesurée.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#projects">Voir les projets ↓</a>
+      <a class="btn ghost" href="https://github.com/RomeoCorrec" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+</header>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">Projets</h2>
+    </div>
+
+    <div class="proj">
+      <div class="proj-top">
+        <div>
+          <div class="proj-name">Détection de langue des signes en temps réel</div>
+          <div class="proj-desc">Pipeline de reconnaissance temps réel, quantifié en INT8 pour l'inférence CPU. L'enjeu : garder la précision en divisant la taille du modèle et la latence.</div>
+        </div>
+        <div class="proj-stack">YOLO · DINOv3 · ONNX</div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="v">÷4</div><div class="k">Taille du modèle</div></div>
+        <div class="metric"><div class="v">−41%</div><div class="k">Latence</div></div>
+        <div class="metric"><div class="v">98 ms</div><div class="k">Par image, CPU</div></div>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-top">
+        <div>
+          <div class="proj-name">Suivi multi-objets</div>
+          <div class="proj-desc">Chaîne détection + tracking avec ré-identification, évaluée sur le benchmark MOT17.</div>
+        </div>
+        <div class="proj-stack">YOLOv8 · ByteTrack · Re-ID</div>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-top">
+        <div>
+          <div class="proj-name">Segmentation d'IRM cérébrales</div>
+          <div class="proj-desc">Segmentation d'images médicales sur volumes IRM avec une architecture U-Net.</div>
+        </div>
+        <div class="proj-stack">U-Net · PyTorch</div>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-top">
+        <div>
+          <div class="proj-name">Benchmark RAG vs Graph RAG</div>
+          <div class="proj-desc">Étude d'ablation complète sur PubMedQA. Résultat : le RAG simple a surpassé toutes les configurations Graph RAG testées.</div>
+        </div>
+        <div class="proj-stack">BGE · Qdrant · SciSpaCy · Gemini</div>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-top">
+        <div>
+          <div class="proj-name">Moteur de recherche multimodal & agent LLM</div>
+          <div class="proj-desc">Recherche sémantique texte-vers-image servie via une API, encapsulée dans un agent LLM.</div>
+        </div>
+        <div class="proj-stack">CLIP · Qdrant · FastAPI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Compétences techniques</h2>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-col">
+        <h4>SOLIDE</h4>
+        <ul>
+          <li>Python · PyTorch</li>
+          <li>Vision (YOLO, U-Net, CLIP, DINOv3)</li>
+          <li>ONNX · quantification INT8</li>
+          <li>Docker</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>EN PRATIQUE</h4>
+        <ul>
+          <li>FastAPI · Qdrant</li>
+          <li>Go</li>
+          <li>SQL · AWS (bases)</li>
+          <li>Kubernetes</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>NOTIONS</h4>
+        <ul>
+          <li>C++</li>
+          <li>LangChain / LangGraph</li>
+          <li>Fine-tuning (LoRA/QLoRA, théorique)</li>
+          <li>ExecuTorch · TinyML</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">À propos</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about">
+        <p>Ingénieur junior en IA/ML, orienté vision par ordinateur et déploiement embarqué. Ce qui m'intéresse, c'est le trajet complet : partir d'un flux d'images et arriver à un modèle qui tourne vraiment, avec des contraintes de taille et de latence.</p>
+        <p>Mon approche est <strong>honnête sur les compromis</strong> : je montre le raisonnement, les métriques, et ce qui ne marche pas — comme le benchmark où le RAG simple a battu des architectures plus sophistiquées.</p>
+        <p>Je cherche un <strong>premier CDI à Paris</strong> (AI/ML Engineer, Computer Vision, Data Scientist), et je suis ouvert aux <strong>VIE</strong> à l'étranger.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="role">MSc Data Science</div>
+          <div class="org">Inst. Polytechnique de Paris (X)</div>
+        </div>
+        <div class="tl-item">
+          <div class="role">Diplôme d'Ingénieur</div>
+          <div class="org">ISEP</div>
+        </div>
+        <div class="tl-item">
+          <div class="role">Stagiaire recherche IA/ML</div>
+          <div class="org">Novespace (Airbus)</div>
+          <div class="note">Modélisation LSTM sur données de vols paraboliques</div>
+        </div>
+        <div class="tl-item">
+          <div class="role">Stagiaire back-end</div>
+          <div class="org">GLIMPS (cybersécurité)</div>
+          <div class="note">Go, Docker, Kubernetes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="contact" id="contact">
+  <div class="wrap">
+    <h2>Parlons-en.</h2>
+    <p>Ouvert aux opportunités en vision par ordinateur, ML embarqué et ingénierie ML. N'hésitez pas à me contacter.</p>
+    <div class="contact-links">
+      <a class="btn ghost" href="https://github.com/RomeoCorrec" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn ghost" href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn primary" href="mailto:votre@email.com">Email</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Romeo Correc — Conçu &amp; développé de A à Z
+</footer>
+
+</body>
+</html>
