@@ -86,7 +86,7 @@
   h1 .mark::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0.08em; height: 3px; background: var(--amber); opacity: 0.85; }
   .lede { font-family: var(--mono); font-size: clamp(14px, 1.7vw, 16px); color: var(--ink-2); max-width: 60ch; line-height: 1.7; margin-bottom: 36px; }
   .actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-  .btn { font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: 0.03em; padding: 11px 18px; border: 1px solid var(--rule-2); transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+  .btn { font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: 0.03em; padding: 11px 18px; border: 1px solid var(--rule-2); transition: background-color 0.18s ease, border 0.18s ease, color 0.18s ease; }
   .btn.solid { background: var(--ink); color: var(--paper); border-color: var(--ink); font-weight: 700; }
   .btn.solid:hover { background: #fff; border-color: #fff; }
   .btn.line:hover { border-color: var(--amber); color: var(--amber); }
@@ -101,12 +101,12 @@
 
   /* ---- Projects as a results table ---- */
   .rows { border-top: 1px solid var(--rule); }
-  .row { display: grid; grid-template-columns: 168px minmax(0, 1fr) auto; gap: 40px; align-items: start; padding: 22px 0; border-bottom: 1px solid var(--rule); transition: background-color 0.16s ease; position: relative; }
+  .row { position: relative; display: grid; grid-template-columns: 168px minmax(0, 1fr) auto; gap: 40px; align-items: start; padding: 22px 0; border-bottom: 1px solid var(--rule); transition: background-color 0.16s ease; }
   .row::before { content: ""; position: absolute; left: -28px; top: 0; bottom: -1px; width: 2px; background: var(--amber); transform: scaleY(0); transform-origin: top; transition: transform 0.2s ease; }
   a.row:hover { background: var(--paper-2); }
   a.row:hover::before { transform: scaleY(1); }
   .row-id { font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: 0.06em; padding-top: 4px; }
-  .row-id .tag { display: inline-block; margin-top: 8px; padding: 2px 7px; border: 1px solid var(--rule-2); border-radius: 2px; font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
+  .row-id .tag { display: inline-block; margin-top: 8px; padding: 2px 7px; border: 1px solid var(--rule-2); border-radius: 2px; font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; }
   .row-body .name { font-family: var(--display); font-size: 20px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 7px; line-height: 1.2; }
   a.row .name::after { content: "↗"; font-family: var(--mono); font-size: 13px; color: var(--ink-3); margin-left: 9px; vertical-align: middle; transition: color 0.16s ease; }
   a.row:hover .name::after { color: var(--amber); }
@@ -190,7 +190,7 @@
     <div class="mast-main">
       <div class="lab kicker rise d1">Portfolio — v2026.08</div>
       <h1 class="rise d2">J'entraîne, j'optimise et je <span class="mark">déploie</span> des modèles.</h1>
-      <p class="lede rise d3">Ingénieur IA/ML junior, orienté vision par ordinateur, LLM et agents. Ce qui m'intéresse : aller du prototype à un pipeline mesuré et déployable, avec une attention réelle aux contraintes de performance.</p>
+      <p class="lede rise d3">Ingénieur IA/ML junior, orienté vision par ordinateur, LLM et agents. Ce qui m'intéresse : aller du prototype à un pipeline mesuré et déployable, avec une attention particulière à la robustesse, à l'observabilité et à la sécurité.</p>
       <div class="actions rise d4">
         <a class="btn solid" href="#work">Voir les projets ↓</a>
         <a class="btn line" href="https://github.com/RomeoCorrec" target="_blank" rel="noopener">GitHub ↗</a>
@@ -216,17 +216,27 @@
         <div class="row-stack">PatchCore<br>anomalib<br>AWS</div>
       </a>
 
+      <a class="row" href="https://github.com/RomeoCorrec/Invoice_Agent" target="_blank" rel="noopener">
+        <div class="row-id">P02<span class="tag">LLM · Finance</span></div>
+        <div class="row-body">
+          <div class="name">Invoice Agent</div>
+          <div class="blurb">Système agentique pour traiter les factures fournisseur d'une PME : vérification déterministe, explication des anomalies en français, validation humaine obligatoire, puis enregistrement idempotent via un serveur MCP.</div>
+          <div class="result"><span>Factur-X · PDF · human-in-the-loop</span></div>
+        </div>
+        <div class="row-stack">LangGraph<br>FastAPI<br>MCP</div>
+      </a>
+
       <div class="row">
-        <div class="row-id">P02<span class="tag">LLM · Agent</span></div>
+        <div class="row-id">P03<span class="tag">LLM · Agent</span></div>
         <div class="row-body">
           <div class="name">Agent LLM d'investigation conversationnelle</div>
-          <div class="blurb">Agent de recherche sémantique et factuelle sur des historiques conversationnels : indexation, mémoire hybride et récupération d'information en langage naturel, avec évaluation RAGAS.</div>
+          <div class="blurb">Agent de recherche sémantique et factuelle sur des historiques conversationnels : indexation, mémoire hybride et récupération d'information en langage naturel, avec un workflow orienté mise en œuvre.</div>
         </div>
         <div class="row-stack">LangGraph<br>Anthropic SDK<br>Voyage · Qdrant</div>
       </div>
 
       <a class="row" href="https://github.com/RomeoCorrec/Pipeline-Multi-Object-Tracking" target="_blank" rel="noopener">
-        <div class="row-id">P03<span class="tag">Vision</span></div>
+        <div class="row-id">P04<span class="tag">Vision</span></div>
         <div class="row-body">
           <div class="name">Suivi multi-objets</div>
           <div class="blurb">Chaîne détection + tracking avec ré-identification, évaluée sur le benchmark MOT17.</div>
@@ -235,7 +245,7 @@
       </a>
 
       <a class="row" href="https://github.com/RomeoCorrec/RAGvsGraphRAG" target="_blank" rel="noopener">
-        <div class="row-id">P04<span class="tag">LLM · Recherche</span></div>
+        <div class="row-id">P05<span class="tag">LLM · Recherche</span></div>
         <div class="row-body">
           <div class="name">Benchmark RAG vs Graph RAG</div>
           <div class="blurb">Étude d'ablation complète sur PubMedQA. Résultat notable :</div>
@@ -245,7 +255,7 @@
       </a>
 
       <a class="row" href="https://github.com/RomeoCorrec/Fake_image_detection" target="_blank" rel="noopener">
-        <div class="row-id">P05<span class="tag">Vision · Authenticité d'image</span></div>
+        <div class="row-id">P06<span class="tag">Vision · Authenticité d'image</span></div>
         <div class="row-body">
           <div class="name">Détection d'images générées par IA</div>
           <div class="blurb">Approche combinant analyse fréquentielle (FFT) et indices géométriques (points de fuite, ombres), avec une fusion de décisions Dempster-Shafer.</div>
@@ -254,7 +264,7 @@
       </a>
 
       <a class="row" href="https://github.com/RomeoCorrec/Brain-MRI-Segmentation" target="_blank" rel="noopener">
-        <div class="row-id">P06<span class="tag">Vision · Médical</span></div>
+        <div class="row-id">P07<span class="tag">Vision · Médical</span></div>
         <div class="row-body">
           <div class="name">Segmentation d'IRM cérébrales</div>
           <div class="blurb">Segmentation d'images médicales sur volumes IRM avec une architecture U-Net.</div>
@@ -263,7 +273,7 @@
       </a>
 
       <a class="row" href="https://github.com/RomeoCorrec/Image-retriever-Agent" target="_blank" rel="noopener">
-        <div class="row-id">P07<span class="tag">Vision · LLM</span></div>
+        <div class="row-id">P08<span class="tag">Vision · LLM</span></div>
         <div class="row-body">
           <div class="name">Moteur de recherche multimodal & agent LLM</div>
           <div class="blurb">Recherche sémantique texte-vers-image servie via une API, encapsulée dans un agent LLM.</div>
@@ -272,7 +282,7 @@
       </a>
 
       <a class="row" href="https://github.com/RomeoCorrec/ev-charging-rl" target="_blank" rel="noopener">
-        <div class="row-id">P08<span class="tag">RL</span></div>
+        <div class="row-id">P09<span class="tag">RL</span></div>
         <div class="row-body">
           <div class="name">Recharge de véhicules électriques par RL</div>
           <div class="blurb">Environnement d'apprentissage par renforcement pour la stratégie de recharge de véhicules électriques.</div>
@@ -281,7 +291,7 @@
       </a>
 
     </div>
-    <p class="more">Aussi : <a href="https://github.com/RomeoCorrec/neuro-learn-w-TRIBE-v2-" target="_blank" rel="noopener">neuro-learn (TRIBE v2)</a>, exploration en modélisation neuronale. → <a href="https://github.com/RomeoCorrec" target="_blank" rel="noopener">tous les dépôts</a></p>
+    <p class="more">Aussi : <a href="https://github.com/RomeoCorrec/neuro-learn-w-TRIBE-v2-" target="_blank" rel="noopener">neuro-learn (TRIBE v2)</a>, exploration en modélisation neuronale.</p>
   </div>
 </section>
 
@@ -333,8 +343,8 @@
         <span class="fig">fig. 03</span>
       </div>
       <div class="prose">
-        <p><b>Ingénieur junior en IA/ML</b>, à l'aise autant en vision par ordinateur qu'avec les LLM et les agents. Ce qui m'intéresse, c'est le trajet complet : partir d'un problème et arriver à un modèle qui tourne vraiment, mesuré et déployable.</p>
-        <p>Mon approche est <b>honnête sur les compromis</b> : je montre le raisonnement, les métriques, et ce qui ne marche pas — comme ce benchmark où le RAG simple a battu des architectures plus sophistiquées.</p>
+        <p><b>Ingénieur junior en IA/ML</b>, à l'aise autant en vision par ordinateur qu'avec les LLM et les agents. Ce qui m'intéresse, c'est le trajet complet : partir d'un problème et arriver à un système utile, à la fois robuste et documenté.</p>
+        <p>Mon approche est <b>honnête sur les compromis</b> : je montre le raisonnement, les métriques, et ce qui ne marche pas — comme ce benchmark où le RAG simple a battu des architectures plus complexes.</p>
         <p>Je cherche un <b>premier CDI à Paris</b> (AI/ML Engineer, Computer Vision, Data Scientist), et je suis ouvert aux <b>VIE</b> à l'étranger.</p>
       </div>
       <div class="cv">
